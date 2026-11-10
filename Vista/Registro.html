@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es-co">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Frambuesa - Registro de Asociados</title>
+    <link rel="stylesheet" href="../assets/css/Registro.css">
+</head>
+
+<body>
+<div class="Registronl1">
+    <h2>Registro de Asociados</h2>
+
+    <form id="FormRegistro" action="../model/guardar_asociados.php" method="POST">
+        <div class="grupo-input">
+            <label for="documento">Ingrese su documento</label>
+            <input id="documento" name="documento" type="number" required placeholder="1234567890">
+        </div>
+
+        <div class="grupo-input">
+            <label for="nombres">Nombre</label> <!-- Cambiado id y name a 'nombres' -->
+            <input id="nombres" name="nombres" type="text" required placeholder="Juan"> 
+        </div>
+        
+        <div class="grupo-input">
+            <label for="apellidos">Apellido</label> <!-- Cambiado id y name a 'apellidos' -->
+            <input id="apellidos" name="apellidos" type="text" required placeholder="Pérez">
+        </div>
+
+        <div class="grupo-input">
+            <label for="fechaNacimiento">Fecha de nacimiento</label>
+            <input id="fechaNacimiento" name="fechaNacimiento" type="date" required>
+        </div>
+
+        <div class="grupo-input">
+            <label>Género:</label>
+            <div style="display: flex; gap: 20px; margin-top: 5px; align-items: center;">
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff;">
+                    <input type="radio" name="genero" value="Femenino" required>
+                    <span>Femenino</span>
+                </label>
+                
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff;">
+                    <input type="radio" name="genero" value="Masculino">
+                    <span>Masculino</span>
+                </label>
+                
+                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer; color: #fff;">
+                    <input type="radio" name="genero" value="Otro">
+                    <span>Otro</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="grupo-input">
+            <label for="ciudad">Ciudad</label>
+            <select id="ciudad" name="ciudad" required>
+                <option value="" disabled selected>Seleccione ciudad</option>
+                <option value="Sogamoso">Sogamoso</option>
+                <option value="Duitama">Duitama</option>
+                <option value="Tunja">Tunja</option>
+            </select>
+        </div>
+
+        <div class="grupo-input">
+            <label for="direccionResidencia">Dirección</label> 
+            <input type="text" name="direccionResidencia" id="direccionResidencia" required placeholder="Calle 123">
+        </div>
+
+        <div class="grupo-input">
+            <label for="telefono">Teléfono</label>
+            <input type="number" name="telefono" id="telefono" required placeholder="3124567890">
+        </div>
+
+        <div class="grupo-input">
+            <label for="email">Email (Usuario)</label>
+            <input type="email" name="email" id="email" required placeholder="ejemplo@email.com">
+        </div>
+
+        <div class="grupo-input">
+            <label for="clave">Contraseña</label>
+            <input type="password" name="clave" id="clave" required placeholder="Ingrese una contraseña">
+        </div>
+
+        <div class="grupo-input">
+            <label for="clave">Confirmar Contraseña</label>
+            <input type="password" name="clave-confirmar" id="clave-confirmar" required placeholder="Ingrese nuevamente la contraseña">
+        </div>
+
+        <div class="grupo-botones">
+            <button type="submit" class="btn-submit">Guardar</button>
+            <button type="reset" class="btn-reset">Limpiar</button>
+            <button type="button" class="btn-volver" onclick="window.location.href='login.html'">Iniciar Sesión</button>
+        </div>
+
+        <p id="mensaje_registro" role="status" aria-live="polite"></p>
+    </form>
+</div>
+
+<script src="../controler/registro.js"></script>
+</body>
+</html>
