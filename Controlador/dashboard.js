@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombre = localStorage.getItem('nombre');
     const rol = localStorage.getItem('rol');
 
-    document.getElementById('nombreUsuario').textContent = nombre;
+    document.querySelector('.header-mr .text-end small').textContent = nombre || 'Usuario';
 
     if (rol === 'admin') {
         document.getElementById('tarjetasAdministrador').classList.remove('d-none');

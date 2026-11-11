@@ -50,7 +50,7 @@ form.addEventListener("submit", async function (event) {
     } catch (error) {
         console.error("Error al guardar el asociado:", error);
         const mensajeP = document.getElementById("mensaje_registro");
-        mensajeP.textContent = "Ocurrió un error de red al intentar guardar.";
+        mensajeP.textContent = "Ocurrió un error al procesar la solicitud.";
         mensajeP.dataset.tipo = "error";
     } finally {
         btnGuardar.disabled = false; // Reactivar el botón pase lo que pase

@@ -17,8 +17,8 @@ try {
         http_response_code(400);
         throw new Exception('Email o clave no válidos.');
     }
-    require_once __DIR__ . '/../config/conexion.php';
-    $conexion = new Conexion();->conectar();
+    require_once __DIR__ . '/../Config/conexion.php';
+    $conexion = (new Conexion())->conectar();
     $consulta = $conexion->prepare("SELECT * FROM asociados WHERE email = :email");
     $consulta->execute([':email' => $email]);
     $asociado = $consulta->fetch();
@@ -26,24 +26,26 @@ try {
         http_response_code(401);
         throw new Exception('Email o clave incorrectos.');
     }
+    session_regenerate_id(true);
     $_SESSION['rol'] = $asociado['rol'];
-    $_SESSION['documento'] = $asociado['documento']; // Guardar el documento del asociado en la sesión
+    $_SESSION['documento'] = $asociado['documento'];
     echo json_encode([
         'success' => true,
-         'rol' => $asociado['rol'],
-         'nombre' => $asociado['nombres'] . ' ' . $asociado['apellidos'],
+        'rol' => $asociado['rol'],
+        'nombre' => $asociado['nombres'] . ' ' . $asociado['apellidos'],
     ]);
-catch(PDOException $e){
-    $errorMessage = "Error: " . $e->getMessage();
+} catch (PDOException $e) {
+    http_response_code(500);
     echo json_encode([
-        "success" => false, 
-        "message" => $errorMessage
+        "success" => false,
+        "mensajeP" => "Error en la base de datos."
     ]);
-}   
-catch(Exception $e){
-    $errorMessage = "Error: " . $e->getMessage();
+} catch (Exception $e) {
+    if (http_response_code() === 200) {
+        http_response_code(500);
+    }
     echo json_encode([
-        "success" => false, 
-        "message" => $errorMessage
+        "success" => false,
+        "mensajeP" => $e->getMessage()
     ]);
 }

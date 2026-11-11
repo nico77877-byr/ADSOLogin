@@ -1,7 +1,6 @@
-<!-- asociados.php -->
 <?php
 
-require_once __DIR__. '/../config/conexion.php';
+require_once __DIR__. '/../Config/conexion.php';
 
 class Asociado {
     private  $documento;
@@ -13,7 +12,8 @@ class Asociado {
     private  $ciudad; 
     private  $telefono; 
     private  $email;
-    private  $clave; // Nueva propiedad para la contraseña
+    private  $clave;
+     // Nueva propiedad para la contraseña
     
     private ?PDO $conexion;
 
@@ -28,7 +28,7 @@ class Asociado {
         $this->ciudad = $datos['ciudad'] ?? '';
         $this->telefono = (string) ($datos['telefono'] ?? '');
         $this->email = $datos['email'] ?? '';
-        $this->clave = password_hash($datos['clave'] ?? '', PASSWORD_DEFAULT); // Hash de la contraseña
+        $this->clave = password_hash($datos['clave'] ?? '', PASSWORD_DEFAULT);
 
 
         $conexionBD = new Conexion();
@@ -41,15 +41,11 @@ class Asociado {
                 VALUES (:documento, :nombres, :apellidos, :fechaNacimiento, :genero, :direccionResidencia, :ciudad, :telefono, :email, :clave)";
 
         $consulta = $this->conexion->prepare($sql);
-        
-        // Formatear la fecha a 'YYYY-MM-DD' para MySQL
-        $fechaFormateada = $this->fechaNacimiento->format('Y-m-d');
-
         return $consulta->execute([
             ':documento' => $this->documento,
             ':nombres' => $this->nombres,
             ':apellidos' => $this->apellidos,
-            ':fechaNacimiento' => $fechaFormateada,
+            ':fechaNacimiento' => $this->fechaNacimiento,
             ':genero' => $this->genero,
             ':direccionResidencia' => $this->direccionResidencia,
             ':ciudad' => $this->ciudad,

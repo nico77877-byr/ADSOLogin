@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
-require_once __DIR__ . '/asociados.php';
+require_once __DIR__ . '/../Modelo/Asociado.php';
 
 try {
     // Validar que el método sea POST; si no lo es, lanzar excepción
@@ -14,8 +14,6 @@ try {
 
     // Decodificar el JSON en un array asociativo
     $datos = json_decode($json, true);
-    echo json_encode($datos); // Para depuración, puedes eliminarlo después
-
     // Validar que los datos se hayan pasado a un array
     if (!is_array($datos) || json_last_error() !== JSON_ERROR_NONE) {
         http_response_code(400);

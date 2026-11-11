@@ -14,5 +14,5 @@ IF(ini_get("session.use_cookies")) {
 session_destroy();
 echo json_encode([
     "success" => true,
-    "message" => "Sesión cerrada correctamente."
+    "mensajeP" => "Sesión cerrada correctamente."
 ]);
